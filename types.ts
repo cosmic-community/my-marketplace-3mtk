@@ -38,11 +38,15 @@ export interface Category extends CosmicObject {
 export interface Host extends CosmicObject {
   type: 'hosts'
   metadata: {
+    // Cosmic stores the host's display name under `name`.
+    name?: string
+    /** @deprecated Legacy alias for `name`; kept so older consumers still compile. */
     full_name?: string
     bio?: string
     avatar?: CosmicFile
     superhost?: boolean
-    response_rate?: string
+    // Stored as a number (e.g. 92, 99) but tolerate string values too.
+    response_rate?: number | string
     response_time?: string
     joined_date?: string
     location?: string
