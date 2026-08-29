@@ -22,9 +22,11 @@ export default async function ListingDetailPage({ params }: ListingPageProps) {
   }
 
   const reviews = await getReviewsByListingId(listing.id)
+  // Rating is stored as a select ("1".."5"), so coerce before summing.
   const averageRating =
     reviews.length > 0
-      ? reviews.reduce((sum, review) => sum + (review.metadata?.rating || 0), 0) / reviews.length
+      ? reviews.reduce((sum, review) => sum + (Number(review.metadata?.rating) || 0), 0) /
+        reviews.length
       : 0
 
   const gallery = listing.metadata?.gallery || []
