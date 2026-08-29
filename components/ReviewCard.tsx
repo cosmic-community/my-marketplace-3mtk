@@ -6,7 +6,8 @@ export default function ReviewCard({ review }: { review: Review }) {
   const avatar = review.metadata?.guest_avatar
   const guestName = getMetafieldValue(review.metadata?.guest_name)
   const reviewText = getMetafieldValue(review.metadata?.review_text)
-  const rating = review.metadata?.rating || 0
+  // Cosmic stores rating as a select ("1".."5"), so coerce before use.
+  const rating = Number(review.metadata?.rating) || 0
   const stayDate = review.metadata?.stay_date
 
   return (
