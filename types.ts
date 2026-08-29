@@ -27,6 +27,7 @@ export interface Category extends CosmicObject {
     description?: string
     icon?: string
     image?: CosmicFile
+    cover_image?: CosmicFile
   }
 }
 
